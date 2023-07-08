@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Genre{% endblock %}
+
+{% block content %}
+
+<div class="container text-light">
+    <h1>Add Genre</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary card-button">Submit</button>
+    </form>
+    <hr>
+    <hr>
+    <h4>Existing Genres</h4><br>
+    {% for genre in genres %}
+    &emsp;{{forloop.counter}}. {{ genre }}<br><br>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ book.title }}{% endblock %}
+
+{% block content %}
+
+<!-- Book details -->
+<div class="card">
+    <div class="card-header">
+        <h5 class="card-title">{{ book.title }}</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-4">
+                <img src="{{ book.cover_image.url }}" alt="Book Cover" class="img-fluid">
+            </div>
+            <div class="col-md-8">
+                <p><strong>Author:</strong> {{ book.author }}</p>
+                <p><strong>Description:</strong> {{ book.description }}</p>
+                <p><strong>Price:</strong> ${{ book.price }}</p>
+                <p><strong>Rating:</strong> {{ book.customer_ratings }}</p>
+                <p><strong>Genres:</strong> {{ book.genres.all|join:", " }}</p>
+                <p><strong>Publication Date:</strong> {{ book.publication_date }}</p>
+                {% comment %}
+                <a href="{% url 'add_to_cart' book.id %}" class="btn btn-primary">Add to Cart</a>
+                {% endcomment %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

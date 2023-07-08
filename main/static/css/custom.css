@@ -1,0 +1,93 @@
+body {
+  overflow-x: hidden;
+  font-family: "Ubuntu";
+}
+
+.content::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("../media/background.jpg");
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.3) blur(1px);
+  z-index: -2;
+}
+
+/* Add your custom CSS styling here */
+
+/* Example CSS */
+.container {
+  margin-top: 50px;
+}
+
+#books-container {
+  margin-bottom: 50px;
+}
+
+.cardImg {
+  max-width: 80%;
+  max-height: 80%;
+}
+
+.card {
+  margin: 3%;
+  padding: 0;
+  text-align: center;
+  color: black;
+}
+
+.card-header,
+.card-footer {
+  background-color: #6c757d;
+}
+
+.card-header {
+  min-height: 7rem;
+}
+
+.card-button {
+  margin: 0 2%;
+  background-color: #ffc107;
+  color: black;
+  border: none;
+}
+
+#removeButton {
+  background-color: #df0101;
+}
+
+#searchFilterContainer {
+  border: 0.1rem solid rgba(255, 255, 255, 0.682);
+  background-color: rgba(255, 255, 255, 0.186);
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+#bookCardsContainer {
+  justify-content: center;
+}
+
+.navbar-nav > li {
+  margin-right: 20px;
+}
+
+.navbar-brand {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.date-input {
+  padding: 0.2rem;
+}
+
+.search-button-container {
+  text-align: right;
+}
+
+.form-group {
+  padding: 2%;
+}
