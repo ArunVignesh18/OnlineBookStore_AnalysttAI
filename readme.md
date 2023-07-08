@@ -21,14 +21,16 @@ List of Pages available in the application - Login - Signup - Dashboard/Home - A
 
 The books are displayed in the Dashboard/Home Page with with search and filter options for details of the books. To view a particular book's details, there is button called 'View Book' in below each book.
 
-ADMIN 1. The admin can add new books to the application with its details such as - title - author - description - Price - Rating - Genres - Publication Date
+ADMIN
+    1. The admin can add new books to the application with its details such as - title - author - description - Price - Rating - Genres - Publication Date
 This can be done in 'Add Book' page.
 
     2. The admin can also add new genres to the genres list which is not available before, and this can be done in the 'Add Genre' page.
 
     3. The admin can remove any existing book, and doing this will remove the book permanently. i.e. It remove the book from the cart too, if someone added to the cart before. This can be done by clicking the 'Remove Book' button in the dashboard page.
 
-USER 1. The user can go through the books in the dashboard and do the searches and filters for their requirements.
+USER
+    1. The user can go through the books in the dashboard and do the searches and filters for their requirements.
 
     2. The user can add a book to the cart for buying, which can be done by clicking 'Add To Cart' button below each book in the dashboard page.
 
