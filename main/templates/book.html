@@ -2,29 +2,36 @@
 
 {% block title %}{{ book.title }}{% endblock %}
 
+{% load static %}
+
 {% block content %}
 
 <!-- Book details -->
-<div class="card">
-    <div class="card-header">
-        <h5 class="card-title">{{ book.title }}</h5>
-    </div>
-    <div class="card-body">
-        <div class="row">
-            <div class="col-md-4">
+<div class="container text-light view-book-page">
+    <div class="row">
+        <div class="col-md-4 text-center">
+            <div class="col">
                 <img src="{{ book.cover_image.url }}" alt="Book Cover" class="img-fluid">
             </div>
-            <div class="col-md-8">
-                <p><strong>Author:</strong> {{ book.author }}</p>
-                <p><strong>Description:</strong> {{ book.description }}</p>
-                <p><strong>Price:</strong> ${{ book.price }}</p>
-                <p><strong>Rating:</strong> {{ book.customer_ratings }}</p>
-                <p><strong>Genres:</strong> {{ book.genres.all|join:", " }}</p>
-                <p><strong>Publication Date:</strong> {{ book.publication_date }}</p>
-                {% comment %}
-                <a href="{% url 'add_to_cart' book.id %}" class="btn btn-primary">Add to Cart</a>
-                {% endcomment %}
+            <hr>
+            <div class="col">
+                {% if request.user.is_superuser %}
+                <a href="{% url 'edit_book' book.id %}" class="btn btn-primary edit-button">Edit Book&nbsp;<img
+                        id="edit-icon" src="{% static 'media/edit-book.png' %}" alt="edit-book"></a>
+                {% else %}
+                <a href="{% url 'add_to_cart' book.id %}" class="btn btn-primary add-to-cart-button">Add to Cart</a>
+                {% endif %}
             </div>
+        </div>
+        <div class="col-md-8">
+            <h2 class="text-center">{{ book.title }}</h2>
+            <h4 class="text-center">- {{ book.author }}</h4>
+            <hr>
+            <p><strong>Description:</strong> {{ book.description }}</p>
+            <p><strong>Price:</strong> &#8377;{{ book.price }}</p>
+            <p><strong>Rating:</strong> {{ book.customer_ratings }}</p>
+            <p><strong>Genres:</strong> {{ book.genres.all|join:", " }}</p>
+            <p><strong>Publication Date:</strong> {{ book.publication_date }}</p>
         </div>
     </div>
 </div>

@@ -1,4 +1,3 @@
-// Function to retrieve book data based on search and filter options
 const fetchBooks = async () => {
   const title = document.getElementById("titleInput").value.trim();
   const author = document.getElementById("authorInput").value.trim();
@@ -14,7 +13,6 @@ const fetchBooks = async () => {
     const response = await axios.get("/api/book_list/");
     const books = response.data;
 
-    // Filter books based on search and filter options
     const filteredBooks = books.filter((book) => {
       let isValid = true;
 
@@ -62,7 +60,6 @@ const fetchBooks = async () => {
   }
 };
 
-// Function to render book cards
 const renderBookCards = (books) => {
   const bookCardsContainer = document.getElementById("bookCardsContainer");
   bookCardsContainer.innerHTML = "";
@@ -92,21 +89,29 @@ const renderBookCards = (books) => {
     cardBody.classList.add("card-body");
     card.appendChild(cardBody);
 
+    const cardImg = document.createElement("div");
+    cardImg.classList.add("card-image-container");
+    cardBody.appendChild(cardImg);
+
     const image = document.createElement("img");
     image.classList.add("card-img-top", "cardImg");
     image.src = book.cover_image;
     image.alt = book.title;
-    cardBody.appendChild(image);
+    cardImg.appendChild(image);
+
+    const cardDetail = document.createElement("div");
+    cardDetail.classList.add("card-details");
+    cardBody.appendChild(cardDetail);
 
     const ratings = document.createElement("p");
     ratings.classList.add("card-text");
     ratings.textContent = `Ratings: ${book.customer_ratings}`;
-    cardBody.appendChild(ratings);
+    cardDetail.appendChild(ratings);
 
     const price = document.createElement("p");
     price.classList.add("card-text");
-    price.textContent = `Price: $${book.price}`;
-    cardBody.appendChild(price);
+    price.textContent = `Price: \u20B9${book.price}`;
+    cardDetail.appendChild(price);
 
     const cardFoot = document.createElement("div");
     cardFoot.classList.add("card-footer");
@@ -138,9 +143,12 @@ const renderBookCards = (books) => {
   });
 };
 
-// Add event listener to search button
-const searchButton = document.getElementById("searchButton");
-searchButton.addEventListener("click", fetchBooks);
+const searchForm = document.getElementById("searchForm");
+searchForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+  fetchBooks();
+});
 
-// Fetch books on page load
+searchButton.removeEventListener("click", fetchBooks);
+
 fetchBooks();

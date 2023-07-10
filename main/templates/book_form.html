@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Add Book{% endblock %}
+{% block title %}{{ form_title }}{% endblock %}
 
 {% block content %}
 
@@ -56,7 +56,8 @@
             {{ form.publication_date }}
         </div>
 
-        <button type="submit" class="btn btn-primary card-button mb-4">Submit</button>
+        <button type="submit" class="btn btn-primary card-button mb-4">{{ submit_button_label }}</button>
+
     </form>
 </div>
 {% endblock %}

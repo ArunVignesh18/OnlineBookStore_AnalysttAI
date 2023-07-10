@@ -1,18 +1,19 @@
 {% load static %}
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark">
     <a class="navbar-brand" href="{% url 'dashboard' %}">
-        <img src="	https://leadzen.ai/wp-content/uploads/2021/06/Group-183-2048x531.png"
-            style="max-height:30px; width: auto;" class="d-inline-block align-top" alt="Logo"></a>
+        <img src="https://leadzen.ai/wp-content/uploads/2021/09/bot.svg" style="max-height:30px; width: auto;"
+            class="d-inline-block align-top" alt="Logo">leadzen.ai</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item active">
-                <a class="nav-link" href="{% url 'dashboard' %}">Home</a>
-            </li>
+            <!-- <li class="nav-item active">
+                <a class="nav-link" href="{% url 'dashboard' %}">Home&nbsp;<img id="home-icon"
+                        src="{% static 'media/home-icon.png' %}" alt="search"></a>
+            </li> -->
             {% if request.user.is_superuser %}
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'add_book' %}">Add Book</a>
@@ -20,15 +21,19 @@
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'add_genre' %}">Add Genre</a>
             </li>
-            {% else %}
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'cart' %}">Cart</a>
-            </li>
             {% endif %}
         </ul>
         <ul class="navbar-nav">
+            {% if request.user.is_superuser %}
+            {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'cart' %}">Cart&nbsp;<img id="cart-icon"
+                        src="{% static 'media/cart-icon.png' %}" alt="cart"></a>
+            </li>
+            {% endif %}
             <li class="nav-item ml-auto">
-                <a class="nav-link pr-5" href="{% url 'logout' %}">Logout</a>
+                <a class="nav-link pr-5" href="{% url 'logout' %}">Logout&nbsp;<img id="logout-icon"
+                        src="{% static 'media/logout-icon.png' %}" alt="logout"></a>
             </li>
         </ul>
     </div>

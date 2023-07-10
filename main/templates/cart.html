@@ -8,14 +8,22 @@
 
 <div class="container">
 
-    <h1 class="mt-4 mb-4 text-light">Cart</h1>
+    <div class="container cart-heading">
+        <h1 class="mt-4 mb-4 text-light">Cart</h1>
+        <a id="back-to-home" class="btn btn-primary mb-4 buy-button" href="{% url 'dashboard' %}">
+            Back to home&nbsp;
+            <img id="home-icon" src="{% static 'media/home-icon.png' %}" alt="home">
+        </a>
+    </div>
+
+
 
     {% if user.is_superuser %}
     <h1 class="mt-4 mb-4 text-light text-center">Admin won't have a cart</h1>
     {% else %}
 
     <div class="text-end text-light">
-        <h5>Total Price: ${{ total_price }}</h5>
+        <h3>Total Price: ${{ total_price }}</h3>
     </div>
     <div id="bookCardsContainer">
 
@@ -29,9 +37,13 @@
                 </div>
 
                 <div class="card-body">
-                    <img class="card-img-top cardImg" src="{{ book.cover_image.url }}" alt="{{ book.title }}">
-                    <p class="card-text">Ratings: {{ book.customer_ratings }}</p>
-                    <p class="card-text">Price: ${{ book.price }}</p>
+                    <div class="card-image-container">
+                        <img class="card-img-top cardImg" src="{{ book.cover_image.url }}" alt="{{ book.title }}">
+                    </div>
+                    <div class="card-details">
+                        <p class="card-text">Ratings: {{ book.customer_ratings }}</p>
+                        <p class="card-text">Price: &#8377;{{ book.price }}</p>
+                    </div>
                 </div>
 
                 <div class="card-footer">
@@ -46,7 +58,7 @@
 
     </div>
 
-    <a href="" class="btn btn-primary mb-5 card-button">Buy Now</a>
+    <button class="btn btn-primary mb-5 buy-button">Buy Now</button>
 
     {% endif %}
 

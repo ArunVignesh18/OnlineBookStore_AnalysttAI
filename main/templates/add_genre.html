@@ -2,6 +2,8 @@
 
 {% block title %}Add Genre{% endblock %}
 
+{% load static %}
+
 {% block content %}
 
 <div class="container text-light">
@@ -12,11 +14,38 @@
         {{ form.as_p }}
         <button type="submit" class="btn btn-primary card-button">Submit</button>
     </form>
+
+    {% if error_message %}
+    <div class="alert alert-danger" role="alert">
+        {{ error_message }}
+    </div>
+    {% endif %}
     <hr>
     <hr>
     <h4>Existing Genres</h4><br>
-    {% for genre in genres %}
-    &emsp;{{forloop.counter}}. {{ genre }}<br><br>
-    {% endfor %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>S.No.</th>
+                <th>Genre Name</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for genre in genres %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ genre }}</td>
+                <td>
+                    <button type="button" class="btn btn-danger btn-sm"
+                        onclick="removeGenre({{ genre.id }})">Remove</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
+
+<script src="{% static 'js/add_genre.js' %}"></script>
+
 {% endblock %}

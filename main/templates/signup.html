@@ -13,12 +13,16 @@
         <h2 class="text-center text-light mb-4" style="padding: 30px; font-size:50px;">Welcome to BooksEra</h2>
         <form method="post" action="{% url 'signup' %}" class="my-5 p-4 bg-dark text-white rounded">
             {% csrf_token %}
-            <h2 class="text-center text-light mb-4" style="font-size:30px;">Sign-up for new account</h2>
+            <h2 class="text-center text-light mb-4" style="font-size:30px;">Sign-up for a new account</h2>
             <div class="mb-3">
                 <input type="text" name="username" class="form-control" placeholder="Username" required>
             </div>
             <div class="mb-3">
                 <input type="password" name="password" class="form-control" placeholder="Password" required>
+            </div>
+            <div class="mb-3">
+                <input type="password" name="confirm_password" class="form-control" placeholder="Confirm Password"
+                    required>
             </div>
             <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
         </form>

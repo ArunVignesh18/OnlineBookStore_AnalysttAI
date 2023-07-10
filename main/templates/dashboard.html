@@ -9,81 +9,84 @@
 
 <div class="container">
 
-    <h1 class="mt-4 mb-4 text-light">Dashboard</h1>
-
-    <h2 class="text-center text-light mb-4">
+    <h1 class="text-center mt-4 mb-4 text-light">
         {% if user.is_superuser %}
         Welcome, Admin
         {% else %}
         Welcome, {{ request.user.username}}
-        {% endif %}
-    </h2>
+        {% endif %}&nbsp;<img id="library-icon" src="{% static 'media/library-icon.png' %}" alt="books">
+    </h1>
 
     <div id="searchFilterContainer">
         <!-- Search and filter options -->
+        <form id="searchForm">
 
-        <div class="row mb-4 text-light">
-            <div class="col-md-6">
-                <label for="ratingsSelect">Title:</label>
-                <input type="text" id="titleInput" class="form-control" placeholder="Search by Title">
+            <div class="row mb-4 text-light">
+                <div class="col-md-6">
+                    <label for="ratingsSelect">Title:</label>
+                    <input type="text" id="titleInput" class="form-control" placeholder="Search by Title">
+                </div>
+                <div class="col-md-6">
+                    <label for="ratingsSelect">Author:</label>
+                    <input type="text" id="authorInput" class="form-control" placeholder="Search by Author">
+                </div>
             </div>
-            <div class="col-md-6">
-                <label for="ratingsSelect">Author:</label>
-                <input type="text" id="authorInput" class="form-control" placeholder="Search by Author">
-            </div>
-        </div>
 
-        <div class="row mb-4 text-light">
-            <div class="col-md-3">
-                <label for="ratingsSelect">Customer Ratings:</label>
-                <select id="ratingsSelect" class="form-control">
-                    <option value="">All</option>
-                    <option value="1">Above 1</option>
-                    <option value="2">Above 2</option>
-                    <option value="3">Above 3</option>
-                    <option value="4">Above 4</option>
-                </select>
-            </div>
-            <div class="col-md-3">
-                <label for="priceMinInput">Price Range:</label>
-                <div class="row">
-                    <div class="col">
-                        <input type="number" id="priceMinInput" class="form-control" placeholder="Min Price">
+            <div class="row mb-4 text-light">
+                <div class="col-md-3">
+                    <label for="ratingsSelect">Customer Ratings:</label>
+                    <select id="ratingsSelect" class="form-control">
+                        <option value="">All</option>
+                        <option value="1">Above 1</option>
+                        <option value="2">Above 2</option>
+                        <option value="3">Above 3</option>
+                        <option value="4">Above 4</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="priceMinInput">Price Range:</label>
+                    <div class="row">
+                        <div class="col">
+                            <input type="number" id="priceMinInput" class="form-control" placeholder="Min Price">
+                        </div>
+                        <div class="col">
+                            <input type="number" id="priceMaxInput" class="form-control" placeholder="Max Price">
+                        </div>
                     </div>
-                    <div class="col">
-                        <input type="number" id="priceMaxInput" class="form-control" placeholder="Max Price">
+                </div>
+                <div class="col-md-2">
+                    <label>Genres:</label>
+                    <select id="genreSelect" class="form-control">
+                        <option value="">All</option>
+                        {% for genre in genres %}
+                        <option value="{{ genre.id }}">{{ genre.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <!-- <label for="publicationDateInput">Publication Date Range:</label> -->
+                    <div class="row">
+                        <div class="col date-input">
+                            <label for="startDateInput">From:</label>
+                            <input type="date" id="startDateInput" class="form-control">
+                        </div>
+                        <div class="col date-input">
+                            <label for="endDateInput">To :</label>
+                            <input type="date" id="endDateInput" class="form-control">
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-2">
-                <label>Genres:</label>
-                <select id="genreSelect" class="form-control">
-                    <option value="">All</option>
-                    {% for genre in genres %}
-                    <option value="{{ genre.id }}">{{ genre.name }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <div class="col-md-4">
-                <label for="publicationDateInput">Publication Date Range:</label>
-                <div class="row">
-                    <div class="col date-input">
-                        <label for="startDateInput">From:</label>
-                        <input type="date" id="startDateInput" class="form-control">
-                    </div>
-                    <div class="col date-input">
-                        <label for="endDateInput">To :</label>
-                        <input type="date" id="endDateInput" class="form-control">
-                    </div>
+
+            <div class="row search-button-container">
+                <div class="col">
+                    <button id="searchButton" type="submit"
+                        class="btn btn-primary card-button align-right">Search&nbsp;<img id="search-icon"
+                            src="{% static 'media/search-icon.png' %}" alt="search">
+                    </button>
                 </div>
             </div>
-        </div>
-
-        <div class="row search-button-container">
-            <div class="col">
-                <button id="searchButton" class="btn btn-primary card-button align-right">Search</button>
-            </div>
-        </div>
+        </form>
     </div>
 
     <div id="bookCardsContainer">
